@@ -19,5 +19,6 @@
         android:id="@+id/my_image_view"
         android:layout_width="400dp"
         android:layout_height="500dp"
+        fresco:failureImage="@drawable/forloops"
         />
 </RelativeLayout>
