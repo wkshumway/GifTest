@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 public class MainActivity extends AppCompatActivity {
@@ -12,13 +13,20 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
         Fresco.initialize(this);
 
-        Uri uri = Uri.parse("file:///Users/wkshumway/StudioProjects/Hello_World/GifTest/app/src/main/res/drawable/whileloop.gif");
+        setContentView(R.layout.activity_main);
+
+        Uri uri = Uri.parse("file:///Users/johnmeyer/Desktop/GifTest/app/src/main/res/drawable/whileloop.gif");
         SimpleDraweeView draweeView = (SimpleDraweeView) findViewById(R.id.my_image_view);
-        draweeView.setImageURI(uri);
+
+        DraweeController controller = Fresco.newDraweeControllerBuilder()
+                .setUri(uri)
+                .setAutoPlayAnimations(true)
+                .build();
+
+        draweeView.setController(controller);
 
     }
 }
